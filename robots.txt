@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /docs/
+
+# Sitemaps
+Sitemap: https://ranataimoorabid.github.io/portfolio/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Disallow any temporary files or backup files
+Disallow: /*.tmp$
+Disallow: /*.bak$
+
+# Allow search engines to index everything else
+Allow: /index.html
