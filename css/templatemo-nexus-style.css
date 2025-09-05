@@ -1886,22 +1886,22 @@ https://templatemo.com/tm-594-nexus-flow
         @media (max-width: 768px) {
     .info-grid {
         grid-template-columns: 1fr;
-        justify-items: center;    /* Center on mobile */
-        align-items: stretch;     /* Keep consistent heights */
-        gap: 1.5rem;            /* Slightly smaller gap on mobile */
+        justify-items: center;    
+        align-items: stretch;    
+        gap: 1.5rem;           
     }
     
     .info-column {
         width: 100%;
-        max-width: 400px;       /* Constrain max width */
-        margin: 0 auto;         /* Center the column */
-        min-height: auto;       /* Remove min-height on mobile */
+        max-width: 400px;      
+        margin: 0 auto;        
+        min-height: auto;      
     }
     
     /* Additional mobile centering for the about content */
     .about-content {
         max-width: 100%;
-        padding: 1.5rem;       /* Reduce padding on mobile */
+        padding: 1.5rem;      
     }
     
     /* Make all section headings smaller on mobile */
@@ -1929,16 +1929,16 @@ https://templatemo.com/tm-594-nexus-flow
 /* Extra small screens */
 @media (max-width: 480px) {
     .info-column {
-        max-width: 350px;       /* Even smaller max width */
-        padding: 1.25rem;      /* Reduce internal padding */
+        max-width: 350px;       
+        padding: 1.25rem;     
     }
     
     .about-content {
-        padding: 1rem;         /* Further reduce padding */
+        padding: 1rem;         
     }
     
     .info-grid {
-        gap: 1rem;             /* Smaller gap on very small screens */
+        gap: 1rem;             
     }
     .timeline {
         padding: 0;
