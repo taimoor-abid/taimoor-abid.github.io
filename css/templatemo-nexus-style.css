@@ -30,25 +30,15 @@ https://templatemo.com/tm-594-nexus-flow
             --primary-pink: #ff00ff;
         }
         /* About Section Styles */
-.about-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
 
-.about-text {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--primary-grey);
-}
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    justify-items: stretch; 
+    align-items: stretch;   
 }
 
 .info-column {
@@ -56,16 +46,26 @@ https://templatemo.com/tm-594-nexus-flow
     padding: 1.5rem;
     border-radius: 10px;
     backdrop-filter: blur(10px);
+    display: flex;          
+    flex-direction: column;  
+    height: 100%;           
+    min-height: 250px;      
 }
 
+/* Ensure content fills the column properly */
 .info-column h3 {
     color: var(--primary-orange);
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    flex-shrink: 0;         /* Don't shrink the title */
 }
 
 .info-list {
     list-style: none;
+    flex-grow: 1;           /* Take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .info-list li {
@@ -77,6 +77,46 @@ https://templatemo.com/tm-594-nexus-flow
     color: #fff;
     margin-right: 0.5rem;
 }
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;    
+        align-items: stretch;     
+        gap: 1.5rem;          
+    }
+    
+    .info-column {
+        width: 100%;
+        max-width: 400px;       
+        margin: 0 auto;      
+        min-height: auto;      
+    }
+    
+    /* Additional mobile centering for the about content */
+    .about-content {
+        max-width: 100%;
+        padding: 1.5rem;      
+    }
+}
+
+/*  small screens */
+@media (max-width: 480px) {
+    .info-column {
+        max-width: 350px;       
+        padding: 1.25rem;      
+    }
+    
+    .about-content {
+        padding: 1rem;         
+    }
+    
+    .info-grid {
+        gap: 1rem;             
+    }
+}
+
 
 /* Timeline Styles */
 .timeline {
@@ -181,12 +221,6 @@ https://templatemo.com/tm-594-nexus-flow
     backdrop-filter: blur(10px);
     
 }
-/* .education-center{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 84%;
-} */
 .education-title {
     color: var(--primary-orange);
     margin-bottom: 1.5rem;
@@ -1849,3 +1883,75 @@ https://templatemo.com/tm-594-nexus-flow
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(var(--primary-pink), var(--primary-cyan));
         }
+        @media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;    /* Center on mobile */
+        align-items: stretch;     /* Keep consistent heights */
+        gap: 1.5rem;            /* Slightly smaller gap on mobile */
+    }
+    
+    .info-column {
+        width: 100%;
+        max-width: 400px;       /* Constrain max width */
+        margin: 0 auto;         /* Center the column */
+        min-height: auto;       /* Remove min-height on mobile */
+    }
+    
+    /* Additional mobile centering for the about content */
+    .about-content {
+        max-width: 100%;
+        padding: 1.5rem;       /* Reduce padding on mobile */
+    }
+    
+    /* Make all section headings smaller on mobile */
+    .section-title {
+        font-size: 2rem !important;
+        letter-spacing: 1px;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    /* Specific adjustments for different sections */
+    .hero-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+    }
+    
+    .education-title,
+    .plan-name,
+    .feature-card h3 {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .info-column {
+        max-width: 350px;       /* Even smaller max width */
+        padding: 1.25rem;      /* Reduce internal padding */
+    }
+    
+    .about-content {
+        padding: 1rem;         /* Further reduce padding */
+    }
+    
+    .info-grid {
+        gap: 1rem;             /* Smaller gap on very small screens */
+    }
+    .timeline {
+        padding: 0;
+
+    }
+    .features-container{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .timeline-content{
+        padding: 1rem;
+    }
+    #about-email span{
+        font-size: 0.7rem;
+    }
+}

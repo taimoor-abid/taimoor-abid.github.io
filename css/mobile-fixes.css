@@ -1,0 +1,94 @@
+/* Title display handling */
+.mobile-title {
+    display: none;
+}
+
+.full-title {
+    display: inline;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile-title {
+        display: inline;
+    }
+    .full-title {
+        display: none;
+    }
+}
+
+/* Title display handling */
+.mobile-title {
+    display: none;
+}
+
+.full-title {
+    display: inline;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile-title {
+        display: inline;
+    }
+    .full-title {
+        display: none;
+    }
+}
+
+/* Section header fixes */
+.section-header {
+    max-width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.section-title {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    text-align: center;
+}
+
+/* Mobile viewport fixes */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Container fixes */
+.hero-container,
+.features-container,
+.stats-container,
+.contact-container,
+.footer-content {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+
+/* Grid adjustments */
+@media screen and (max-width: 768px) {
+    .features-grid,
+    .info-grid,
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+    }
+    
+    .feature-card,
+    .info-column,
+    .education-column {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* Fix for mobile menu */
+.mobile-menu {
+    max-width: 100vw;
+}
