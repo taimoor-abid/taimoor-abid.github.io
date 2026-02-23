@@ -235,16 +235,16 @@
             </div>
             
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💐</div>
-                    <h3>The Wedding Spot</h3>
-                    <p>Full-stack wedding hall booking platform with multi-user roles. Built with React.js, Material UI, Express.js, Node.js, MySQL, and Stripe integration.</p>
-                </div>
-                
-                <a href="https://www.suzileather.co/" target="_blank" rel="noopener noreferrer" class="feature-card">
-                    <div class="feature-icon">👜</div>
-                    <h3>Suzi Leather</h3>
-                    <p>Premium e-commerce platform for luxury leather goods featuring modern UI/UX design, responsive layouts, product showcase galleries, and seamless shopping experience. Built with modern web technologies for optimal performance and user engagement.</p>
+                <a href="https://kepkahouse.com/" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Kepka House</h3>
+                    <p>Clean, static marketing website built with Next.js and deployed on Vercel. Showcases video production and performance marketing services across Home, About, Case Studies, Testimonials, and Contact — focused on fast load times, SEO-friendly static pages, and a conversion-oriented layout suited for agencies and portfolios.</p>
+                </a>
+
+                <a href="https://lmil.infinityfreeapp.com/" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <div class="feature-icon">🌸</div>
+                    <h3>Lmil Fragrances</h3>
+                    <p>Visually engaging landing site using server-side PHP for templating with CSS/JavaScript animations for motion and interactivity. Features animated transitions, scroll effects, and interactive elements that enhance user experience while maintaining a clean, performance-focused layout.</p>
                 </a>
                 
                 <a href="https://www.catalystonlinesolutions.com/" target="_blank" rel="noopener noreferrer" class="feature-card">
@@ -304,7 +304,8 @@
             </div>
             
             <div class="contact-form-wrapper">
-                <div class="contact-form">
+                <!-- Converted to a real form. Replace `actionUrl` in the script below with your Formspree / form endpoint -->
+                <form id="contactForm" class="contact-form" novalidate>
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -319,9 +320,14 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
                     </div>
-                    
-                    <button type="submit" class="btn-primary btn-submit">Send Message</button>
-                </div>
+
+                    <div id="contactFeedback" role="status" aria-live="polite" class="contact-feedback" style="margin-bottom:12px;color:#ffdddd"></div>
+
+                    <button type="submit" class="btn-primary btn-submit" aria-live="polite">
+                        <span class="spinner" aria-hidden="true" hidden></span>
+                        <span class="btn-text">Send Message</span>
+                    </button>
+                </form>
             </div>
         </div>
     </section>

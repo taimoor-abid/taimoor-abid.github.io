@@ -506,51 +506,89 @@ function addAnimationStyles() {
     }
 }
 
-// Contact form submission with better error handling
+// Contact form submission with Formspree integration, spinner and ARIA busy handling
 function initializeContactForm() {
+    const form = document.getElementById('contactForm');
+    const feedback = document.getElementById('contactFeedback');
     const submitButton = document.querySelector('.btn-submit');
-    if (submitButton) {
-        submitButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name');
-            const email = document.getElementById('email');
-            const message = document.getElementById('message');
-            
-            if (name && email && message && name.value && email.value && message.value) {
-                // Email validation
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(email.value)) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-                
-                // Simulate form submission
-                this.textContent = 'TRANSMITTING...';
-                this.disabled = true;
-                this.style.background = 'linear-gradient(135deg, var(--primary-cyan), var(--primary-pink))';
-                
-                setTimeout(() => {
-                    this.textContent = 'TRANSMISSION COMPLETE';
-                    this.style.background = 'var(--primary-cyan)';
-                    
-                    // Clear form
-                    name.value = '';
-                    email.value = '';
-                    message.value = '';
-                    
-                    // Reset button after 3 seconds
-                    setTimeout(() => {
-                        this.textContent = 'Send Message';
-                        this.style.background = '';
-                        this.disabled = false;
-                    }, 3000);
-                }, 2000);
-            } else {
-                alert('Please fill in all fields.');
-            }
-        });
+    const spinner = submitButton ? submitButton.querySelector('.spinner') : null;
+    const btnText = submitButton ? submitButton.querySelector('.btn-text') : null;
+    // Formspree endpoint (user-provided)
+    const actionUrl = 'https://formspree.io/f/mnjbowry';
+
+    if (!form || !submitButton) return;
+
+    function setFeedback(message, isError) {
+        if (!feedback) return;
+        feedback.textContent = message;
+        feedback.style.color = isError ? '#ff6b6b' : '#9be7a1';
     }
+
+    function setBusy(isBusy) {
+        submitButton.disabled = !!isBusy;
+        if (isBusy) {
+            submitButton.setAttribute('aria-busy', 'true');
+        } else {
+            submitButton.removeAttribute('aria-busy');
+        }
+        if (spinner) spinner.hidden = !isBusy;
+        if (btnText) btnText.textContent = isBusy ? 'Sending...' : 'Send Message';
+    }
+
+    async function doSend() {
+        setFeedback('', false);
+
+        const name = (form.name.value || '').trim();
+        const email = (form.email.value || '').trim();
+        const message = (form.message.value || '').trim();
+
+        if (!name || !email || !message) {
+            setFeedback('Please fill in all fields.', true);
+            return;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            setFeedback('Please enter a valid email address.', true);
+            return;
+        }
+
+        setBusy(true);
+
+        try {
+            const res = await fetch(actionUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+
+            if (res.ok) {
+                setFeedback('Message sent — thank you! I will get back to you shortly.', false);
+                form.reset();
+            } else {
+                let text = 'Failed to send. Please try again later.';
+                try { const data = await res.json(); if (data && data.error) text = data.error; } catch (err) {}
+                setFeedback(text, true);
+            }
+        } catch (err) {
+            setFeedback('Network error. Please try again later.', true);
+        } finally {
+            setBusy(false);
+        }
+    }
+
+    submitButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        doSend();
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        doSend();
+    });
 }
 
 // Initialize everything when DOM is ready
