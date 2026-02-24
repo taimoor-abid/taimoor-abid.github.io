@@ -78,6 +78,53 @@ https://templatemo.com/tm-594-nexus-flow
     margin-right: 0.5rem;
 }
 
+/* Skill list styling (improves readability in Skills cards) */
+.skill-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.6rem;
+    line-height: 1.5;
+    color: var(--primary-grey);
+    font-size: 0.95rem;
+}
+
+.skill-list li {
+    margin-bottom: 0.5rem;
+}
+
+.skill-list li strong {
+    color: #fff;
+    margin-right: 0.5rem;
+    font-weight: 700;
+}
+
+/* Layout skills inline with comfortable gaps; wrap when needed */
+.feature-card .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem; /* row-gap column-gap */
+    align-items: center;
+}
+
+.feature-card .skill-list li {
+    display: inline-block;
+    margin-bottom: 0; /* handled by wrapping gap */
+    margin-right: 0.8rem;
+}
+
+/* On small screens revert to stacked list for readability */
+@media (max-width: 600px) {
+    .feature-card .skill-list {
+        display: block;
+        gap: 0;
+    }
+    .feature-card .skill-list li {
+        display: block;
+        margin-bottom: 0.6rem;
+        margin-right: 0;
+    }
+}
+
 /* Mobile responsive fixes */
 @media (max-width: 768px) {
     .info-grid {
